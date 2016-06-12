@@ -8,9 +8,9 @@
 * MySQL 6.3 (dev.mysql.com/downloads/mysql) is installed
 * Hotel Reservation database is created - run .\dbscripts\HotelReservationDBSchema.sql in MySQL
 * MySQL database connection credentials are updated: .\conf\mysql.properties: username and password
-* MySQL JDBC driver jar (dev.mysql.com/downloads/connector/j/5.1.html) is placed into %AXIS2_HOME%\lib
 * Database instance is up: MySQL Workbench -> Instance -> Startup /Shutdown -> Start server
 * Apache Axis2-1.6.1 web service container (http://axis.apache.org/axis2/java/core) is installed (AXIS2_HOME is pointing to its directory)
+* MySQL JDBC driver jar (dev.mysql.com/downloads/connector/j/5.1.html) is placed into %AXIS2_HOME%\lib
 * rampart-1.6.1 web services security (archive.apache.org/dist/axis/axis2/java/rampart/1.6.1/) is installed:
   - RAMPART_HOME is pointing to its directory
   - rahas-1.6.1.mar and rampart-1.6.1.mar are placed into %AXIS2_HOME%\repository\modules
