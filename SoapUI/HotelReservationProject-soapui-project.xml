@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="eb486c35-720e-4f82-b5a9-ef1e9ad3c65d" activeEnvironment="Default" name="HotelReservationProject" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="2624dea2-d287-46e1-9244-66d95c7bbe28" wsaVersion="NONE" name="GuestManagementServiceSoap11Binding" type="wsdl" bindingName="{http://sample.com/reservation/guest}GuestManagementServiceSoap11Binding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/axis2/services/GuestManagementService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/axis2/services/GuestManagementService?wsdl"><con:part><con:url>http://localhost:8080/axis2/services/GuestManagementService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://sample.com/reservation/guest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://sample.com/reservation/guest/types" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://sample.com/reservation/guest" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax21="http://exception.reservation.sample.com/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsp:Policy wsu:Id="UTOverTransport" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy/>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient"/>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:documentation>GuestManagementService</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://exception.reservation.sample.com/xsd">
+      <xs:complexType name="GuestManagementException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://sample.com/reservation/guest/types" xmlns:ax22="http://exception.reservation.sample.com/xsd">
+      <xs:import namespace="http://exception.reservation.sample.com/xsd"/>
+      <xs:element name="GuestManagementServiceGuestManagementException">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GuestManagementException" nillable="true" type="ax21:GuestManagementException"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getGuestDetails">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getGuestDetailsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ns:Guest"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Guest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="age" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addGuest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="address" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="age" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addGuestResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deleteGuest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getGuestDetailsRequest">
+    <wsdl:part name="parameters" element="ns:getGuestDetails"/>
+  </wsdl:message>
+  <wsdl:message name="getGuestDetailsResponse">
+    <wsdl:part name="parameters" element="ns:getGuestDetailsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GuestManagementServiceGuestManagementException">
+    <wsdl:part name="parameters" element="ns:GuestManagementServiceGuestManagementException"/>
+  </wsdl:message>
+  <wsdl:message name="deleteGuestRequest">
+    <wsdl:part name="parameters" element="ns:deleteGuest"/>
+  </wsdl:message>
+  <wsdl:message name="addGuestRequest">
+    <wsdl:part name="parameters" element="ns:addGuest"/>
+  </wsdl:message>
+  <wsdl:message name="addGuestResponse">
+    <wsdl:part name="parameters" element="ns:addGuestResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="GuestManagementServicePortType" wsp:PolicyURIs="#UTOverTransport" xmlns:wsp="http://www.w3.org/ns/ws-policy">
+    <wsdl:operation name="getGuestDetails">
+      <wsdl:input message="tns:getGuestDetailsRequest" wsaw:Action="urn:getGuestDetails"/>
+      <wsdl:output message="tns:getGuestDetailsResponse" wsaw:Action="urn:getGuestDetailsResponse"/>
+      <wsdl:fault message="tns:GuestManagementServiceGuestManagementException" name="GuestManagementServiceGuestManagementException" wsaw:Action="urn:getGuestDetailsGuestManagementServiceGuestManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGuest">
+      <wsdl:input message="tns:deleteGuestRequest" wsaw:Action="urn:deleteGuest"/>
+      <wsdl:fault message="tns:GuestManagementServiceGuestManagementException" name="GuestManagementServiceGuestManagementException" wsaw:Action="urn:deleteGuestGuestManagementServiceGuestManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="addGuest">
+      <wsdl:input message="tns:addGuestRequest" wsaw:Action="urn:addGuest"/>
+      <wsdl:output message="tns:addGuestResponse" wsaw:Action="urn:addGuestResponse"/>
+      <wsdl:fault message="tns:GuestManagementServiceGuestManagementException" name="GuestManagementServiceGuestManagementException" wsaw:Action="urn:addGuestGuestManagementServiceGuestManagementException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GuestManagementServiceSoap11Binding" type="tns:GuestManagementServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getGuestDetails">
+      <soap:operation soapAction="urn:getGuestDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGuest">
+      <soap:operation soapAction="urn:deleteGuest" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addGuest">
+      <soap:operation soapAction="urn:addGuest" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GuestManagementServiceSoap12Binding" type="tns:GuestManagementServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getGuestDetails">
+      <soap12:operation soapAction="urn:getGuestDetails" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap12:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGuest">
+      <soap12:operation soapAction="urn:deleteGuest" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap12:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addGuest">
+      <soap12:operation soapAction="urn:addGuest" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap12:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GuestManagementServiceHttpBinding" type="tns:GuestManagementServicePortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="getGuestDetails">
+      <http:operation location="getGuestDetails"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGuest">
+      <http:operation location="deleteGuest"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="addGuest">
+      <http:operation location="addGuest"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GuestManagementService">
+    <wsdl:port name="GuestManagementServiceHttpSoap11Endpoint" binding="tns:GuestManagementServiceSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="GuestManagementServiceHttpSoap12Endpoint" binding="tns:GuestManagementServiceSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="GuestManagementServiceHttpEndpoint" binding="tns:GuestManagementServiceHttpBinding">
+      <http:address location="http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation id="6c712d44-a2ec-476c-a7a2-fc0db46651ed" isOneWay="false" action="urn:addGuest" name="addGuest" bindingOperationName="addGuest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d68cf52b-25b9-4d40-9bbe-b2b296422c63" name="Request 1" wssPasswordType="PasswordText"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@wss-time-to-live">60</con:setting><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@bind_address"/></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://sample.com/reservation/guest/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:addGuest>\r
+         <!--Optional:-->\r
+         <typ:name>Saman4</typ:name>\r
+         <!--Optional:-->\r
+         <typ:address>Colombo, Sri Lanka</typ:address>\r
+         <!--Optional:-->\r
+         <typ:age>24</typ:age>\r
+      </typ:addGuest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>volodymyr20</con:username><con:password>volo20dymyr</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:addGuest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="6d1cfd39-0081-4d5b-bacd-a5066a52ae3e" isOneWay="false" action="urn:deleteGuest" name="deleteGuest" bindingOperationName="deleteGuest" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4c197579-506c-4895-814b-3d72f0b1c9c2" name="Request 1" wssPasswordType="PasswordText"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@wss-time-to-live">60</con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://sample.com/reservation/guest/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:deleteGuest>\r
+         <!--Optional:-->\r
+         <typ:guestName>Saman2</typ:guestName>\r
+      </typ:deleteGuest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>volodymyr20</con:username><con:password>volo20dymyr</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deleteGuest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="65b23726-bb25-4453-9e34-c2d21393e410" isOneWay="false" action="urn:getGuestDetails" name="getGuestDetails" bindingOperationName="getGuestDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3748cb1b-4a64-4bfe-9640-9c059857636b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://sample.com/reservation/guest/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:getGuestDetails>\r
+         <!--Optional:-->\r
+         <typ:guestName>?</typ:guestName>\r
+      </typ:getGuestDetails>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getGuestDetails"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="00c07195-2de0-420c-8759-936dda31420a" wsaVersion="NONE" name="GuestManagementServiceSoap12Binding" type="wsdl" bindingName="{http://sample.com/reservation/guest}GuestManagementServiceSoap12Binding" soapVersion="1_2" anonymous="optional" definition="http://localhost:8080/axis2/services/GuestManagementService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/axis2/services/GuestManagementService?wsdl"><con:part><con:url>http://localhost:8080/axis2/services/GuestManagementService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://sample.com/reservation/guest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://sample.com/reservation/guest/types" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://sample.com/reservation/guest" xmlns:ax21="http://exception.reservation.sample.com/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsp:Policy wsu:Id="UTOverTransport" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy/>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient"/>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:documentation>GuestManagementService</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://exception.reservation.sample.com/xsd">
+      <xs:complexType name="GuestManagementException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://sample.com/reservation/guest/types" xmlns:ax22="http://exception.reservation.sample.com/xsd">
+      <xs:import namespace="http://exception.reservation.sample.com/xsd"/>
+      <xs:element name="GuestManagementServiceGuestManagementException">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GuestManagementException" nillable="true" type="ax21:GuestManagementException"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getGuestDetails">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getGuestDetailsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ns:Guest"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Guest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="age" type="xs:int"/>
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addGuest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="address" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="age" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addGuestResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deleteGuest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="guestName" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getGuestDetailsRequest">
+    <wsdl:part name="parameters" element="ns:getGuestDetails"/>
+  </wsdl:message>
+  <wsdl:message name="getGuestDetailsResponse">
+    <wsdl:part name="parameters" element="ns:getGuestDetailsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GuestManagementServiceGuestManagementException">
+    <wsdl:part name="parameters" element="ns:GuestManagementServiceGuestManagementException"/>
+  </wsdl:message>
+  <wsdl:message name="deleteGuestRequest">
+    <wsdl:part name="parameters" element="ns:deleteGuest"/>
+  </wsdl:message>
+  <wsdl:message name="addGuestRequest">
+    <wsdl:part name="parameters" element="ns:addGuest"/>
+  </wsdl:message>
+  <wsdl:message name="addGuestResponse">
+    <wsdl:part name="parameters" element="ns:addGuestResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="GuestManagementServicePortType" wsp:PolicyURIs="#UTOverTransport" xmlns:wsp="http://www.w3.org/ns/ws-policy">
+    <wsdl:operation name="getGuestDetails">
+      <wsdl:input message="tns:getGuestDetailsRequest" wsaw:Action="urn:getGuestDetails"/>
+      <wsdl:output message="tns:getGuestDetailsResponse" wsaw:Action="urn:getGuestDetailsResponse"/>
+      <wsdl:fault message="tns:GuestManagementServiceGuestManagementException" name="GuestManagementServiceGuestManagementException" wsaw:Action="urn:getGuestDetailsGuestManagementServiceGuestManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGuest">
+      <wsdl:input message="tns:deleteGuestRequest" wsaw:Action="urn:deleteGuest"/>
+      <wsdl:fault message="tns:GuestManagementServiceGuestManagementException" name="GuestManagementServiceGuestManagementException" wsaw:Action="urn:deleteGuestGuestManagementServiceGuestManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="addGuest">
+      <wsdl:input message="tns:addGuestRequest" wsaw:Action="urn:addGuest"/>
+      <wsdl:output message="tns:addGuestResponse" wsaw:Action="urn:addGuestResponse"/>
+      <wsdl:fault message="tns:GuestManagementServiceGuestManagementException" name="GuestManagementServiceGuestManagementException" wsaw:Action="urn:addGuestGuestManagementServiceGuestManagementException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GuestManagementServiceSoap11Binding" type="tns:GuestManagementServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getGuestDetails">
+      <soap:operation soapAction="urn:getGuestDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGuest">
+      <soap:operation soapAction="urn:deleteGuest" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addGuest">
+      <soap:operation soapAction="urn:addGuest" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GuestManagementServiceSoap12Binding" type="tns:GuestManagementServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getGuestDetails">
+      <soap12:operation soapAction="urn:getGuestDetails" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap12:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGuest">
+      <soap12:operation soapAction="urn:deleteGuest" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap12:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addGuest">
+      <soap12:operation soapAction="urn:addGuest" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GuestManagementServiceGuestManagementException">
+        <soap12:fault use="literal" name="GuestManagementServiceGuestManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GuestManagementServiceHttpBinding" type="tns:GuestManagementServicePortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="getGuestDetails">
+      <http:operation location="getGuestDetails"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGuest">
+      <http:operation location="deleteGuest"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="addGuest">
+      <http:operation location="addGuest"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GuestManagementService">
+    <wsdl:port name="GuestManagementServiceHttpSoap11Endpoint" binding="tns:GuestManagementServiceSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="GuestManagementServiceHttpSoap12Endpoint" binding="tns:GuestManagementServiceSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="GuestManagementServiceHttpEndpoint" binding="tns:GuestManagementServiceHttpBinding">
+      <http:address location="http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation id="ecff69ba-b172-438f-ad13-146630014b91" isOneWay="false" action="urn:addGuest" name="addGuest" bindingOperationName="addGuest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d6725e28-6efa-4aac-9991-4ff51cfd7480" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/guest/types">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <typ:addGuest>\r
+         <!--Optional:-->\r
+         <typ:name>?</typ:name>\r
+         <!--Optional:-->\r
+         <typ:address>?</typ:address>\r
+         <!--Optional:-->\r
+         <typ:age>?</typ:age>\r
+      </typ:addGuest>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:addGuest"/></con:call></con:operation><con:operation id="cd16d291-349e-49de-a5c5-134e4a11bd47" isOneWay="false" action="urn:deleteGuest" name="deleteGuest" bindingOperationName="deleteGuest" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0e723298-0b7c-4f0d-bf9f-0fa16b568fb9" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/guest/types">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <typ:deleteGuest>\r
+         <!--Optional:-->\r
+         <typ:guestName>?</typ:guestName>\r
+      </typ:deleteGuest>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deleteGuest"/></con:call></con:operation><con:operation id="d2bd203e-7ce3-41c7-9773-bc377fe49cfd" isOneWay="false" action="urn:getGuestDetails" name="getGuestDetails" bindingOperationName="getGuestDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="6d5f75fc-c92e-490b-994e-f199b4540a33" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/GuestManagementService.GuestManagementServiceHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/guest/types">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <typ:getGuestDetails>\r
+         <!--Optional:-->\r
+         <typ:guestName>?</typ:guestName>\r
+      </typ:getGuestDetails>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getGuestDetails"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="7d2869e1-7e59-4a90-a74f-ea1c3bfece6e" wsaVersion="NONE" name="RoomManagementServiceSoap12Binding" type="wsdl" bindingName="{http://sample.com/reservation/room}RoomManagementServiceSoap12Binding" soapVersion="1_2" anonymous="optional" definition="http://localhost:8080/axis2/services/RoomManagementService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation id="8bbeb657-05fa-4c40-b9e0-6d7e0cde3348" isOneWay="false" action="urn:addRoom" name="addRoom" bindingOperationName="addRoom" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="940b2315-a8bd-4ea8-aa22-b85ed3b6bccf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/room/types">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <typ:addRoom>\r
+         <!--Optional:-->\r
+         <typ:roomNumber>?</typ:roomNumber>\r
+         <!--Optional:-->\r
+         <typ:roomType>?</typ:roomType>\r
+         <!--Optional:-->\r
+         <typ:roomSize>?</typ:roomSize>\r
+      </typ:addRoom>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:addRoom"/></con:call></con:operation><con:operation id="3b6169c9-fd33-4a21-b93c-02f7e1265583" isOneWay="false" action="urn:deleteRoom" name="deleteRoom" bindingOperationName="deleteRoom" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="01cde7a4-b40d-4302-883e-a738bd53a503" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/room/types">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <typ:deleteRoom>\r
+         <!--Optional:-->\r
+         <typ:roomNumber>?</typ:roomNumber>\r
+      </typ:deleteRoom>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deleteRoom"/></con:call></con:operation><con:operation id="6ee7c6cc-948b-4925-9ffe-4a5eb83847ac" isOneWay="false" action="urn:getRoomDetails" name="getRoomDetails" bindingOperationName="getRoomDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e125223f-3121-4d6b-8ad0-17e1421ec8f9" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:typ="http://sample.com/reservation/room/types">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <typ:getRoomDetails>\r
+         <!--Optional:-->\r
+         <typ:roomNumber>?</typ:roomNumber>\r
+      </typ:getRoomDetails>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getRoomDetails"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="39c2324f-31bf-4da3-a7ea-f2f422499448" wsaVersion="NONE" name="RoomManagementServiceSoap11Binding" type="wsdl" bindingName="{http://sample.com/reservation/room}RoomManagementServiceSoap11Binding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/axis2/services/RoomManagementService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/axis2/services/RoomManagementService?wsdl"><con:part><con:url>http://localhost:8080/axis2/services/RoomManagementService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://sample.com/reservation/room" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://sample.com/reservation/room/types" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://sample.com/reservation/room" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax23="http://exception.reservation.sample.com/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsp:Policy wsu:Id="SigOnly" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:AsymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:InitiatorToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                  <wsp:Policy>
+                    <sp:RequireThumbprintReference/>
+                    <sp:WssX509V3Token10/>
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:InitiatorToken>
+            <sp:RecipientToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Never">
+                  <wsp:Policy>
+                    <sp:RequireThumbprintReference/>
+                    <sp:WssX509V3Token10/>
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:RecipientToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:TripleDesRsa15/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+            <sp:OnlySignEntireHeadersAndBody/>
+          </wsp:Policy>
+        </sp:AsymmetricBinding>
+        <sp:Wss10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Policy>
+            <sp:MustSupportRefKeyIdentifier/>
+            <sp:MustSupportRefIssuerSerial/>
+          </sp:Policy>
+        </sp:Wss10>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:documentation>RoomManagementService</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://sample.com/reservation/room/types" xmlns:ax24="http://exception.reservation.sample.com/xsd">
+      <xs:import namespace="http://exception.reservation.sample.com/xsd"/>
+      <xs:element name="RoomManagementServiceRoomManagementException">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="RoomManagementException" nillable="true" type="ax23:RoomManagementException"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRoomDetails">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roomNumber" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getRoomDetailsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ns:Room"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Room">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="roomNumber" type="xs:int"/>
+          <xs:element minOccurs="0" name="roomSize" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="roomType" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="deleteRoom">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roomNumber" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addRoom">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roomNumber" type="xs:int"/>
+            <xs:element minOccurs="0" name="roomType" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="roomSize" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addRoomResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://exception.reservation.sample.com/xsd">
+      <xs:complexType name="RoomManagementException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="deleteRoomRequest">
+    <wsdl:part name="parameters" element="ns:deleteRoom"/>
+  </wsdl:message>
+  <wsdl:message name="RoomManagementServiceRoomManagementException">
+    <wsdl:part name="parameters" element="ns:RoomManagementServiceRoomManagementException"/>
+  </wsdl:message>
+  <wsdl:message name="getRoomDetailsRequest">
+    <wsdl:part name="parameters" element="ns:getRoomDetails"/>
+  </wsdl:message>
+  <wsdl:message name="getRoomDetailsResponse">
+    <wsdl:part name="parameters" element="ns:getRoomDetailsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="addRoomRequest">
+    <wsdl:part name="parameters" element="ns:addRoom"/>
+  </wsdl:message>
+  <wsdl:message name="addRoomResponse">
+    <wsdl:part name="parameters" element="ns:addRoomResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="RoomManagementServicePortType" wsp:PolicyURIs="#SigOnly" xmlns:wsp="http://www.w3.org/ns/ws-policy">
+    <wsdl:operation name="deleteRoom">
+      <wsdl:input message="tns:deleteRoomRequest" wsaw:Action="urn:deleteRoom"/>
+      <wsdl:fault message="tns:RoomManagementServiceRoomManagementException" name="RoomManagementServiceRoomManagementException" wsaw:Action="urn:deleteRoomRoomManagementServiceRoomManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getRoomDetails">
+      <wsdl:input message="tns:getRoomDetailsRequest" wsaw:Action="urn:getRoomDetails"/>
+      <wsdl:output message="tns:getRoomDetailsResponse" wsaw:Action="urn:getRoomDetailsResponse"/>
+      <wsdl:fault message="tns:RoomManagementServiceRoomManagementException" name="RoomManagementServiceRoomManagementException" wsaw:Action="urn:getRoomDetailsRoomManagementServiceRoomManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="addRoom">
+      <wsdl:input message="tns:addRoomRequest" wsaw:Action="urn:addRoom"/>
+      <wsdl:output message="tns:addRoomResponse" wsaw:Action="urn:addRoomResponse"/>
+      <wsdl:fault message="tns:RoomManagementServiceRoomManagementException" name="RoomManagementServiceRoomManagementException" wsaw:Action="urn:addRoomRoomManagementServiceRoomManagementException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RoomManagementServiceSoap11Binding" type="tns:RoomManagementServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="deleteRoom">
+      <soap:operation soapAction="urn:deleteRoom" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RoomManagementServiceRoomManagementException">
+        <soap:fault use="literal" name="RoomManagementServiceRoomManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRoomDetails">
+      <soap:operation soapAction="urn:getRoomDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RoomManagementServiceRoomManagementException">
+        <soap:fault use="literal" name="RoomManagementServiceRoomManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addRoom">
+      <soap:operation soapAction="urn:addRoom" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RoomManagementServiceRoomManagementException">
+        <soap:fault use="literal" name="RoomManagementServiceRoomManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RoomManagementServiceSoap12Binding" type="tns:RoomManagementServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="deleteRoom">
+      <soap12:operation soapAction="urn:deleteRoom" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RoomManagementServiceRoomManagementException">
+        <soap12:fault use="literal" name="RoomManagementServiceRoomManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRoomDetails">
+      <soap12:operation soapAction="urn:getRoomDetails" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RoomManagementServiceRoomManagementException">
+        <soap12:fault use="literal" name="RoomManagementServiceRoomManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addRoom">
+      <soap12:operation soapAction="urn:addRoom" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RoomManagementServiceRoomManagementException">
+        <soap12:fault use="literal" name="RoomManagementServiceRoomManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RoomManagementServiceHttpBinding" type="tns:RoomManagementServicePortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="deleteRoom">
+      <http:operation location="deleteRoom"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getRoomDetails">
+      <http:operation location="getRoomDetails"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addRoom">
+      <http:operation location="addRoom"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RoomManagementService">
+    <wsdl:port name="RoomManagementServiceHttpSoap11Endpoint" binding="tns:RoomManagementServiceSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="RoomManagementServiceHttpSoap12Endpoint" binding="tns:RoomManagementServiceSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="RoomManagementServiceHttpEndpoint" binding="tns:RoomManagementServiceHttpBinding">
+      <http:address location="http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation id="a1bce139-34b0-4b14-b834-25688951c40f" isOneWay="false" action="urn:addRoom" name="addRoom" bindingOperationName="addRoom" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bdc19ac3-9370-4e39-b4f8-10b5a75e2458" name="Request 1" wssPasswordType="PasswordText"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@wss-time-to-live">60</con:setting><con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@follow-redirects">true</con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://sample.com/reservation/room/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:addRoom>\r
+         <!--Optional:-->\r
+         <typ:roomNumber>101</typ:roomNumber>\r
+         <!--Optional:-->\r
+         <typ:roomType>Double</typ:roomType>\r
+         <!--Optional:-->\r
+         <typ:roomSize>Standard</typ:roomSize>\r
+      </typ:addRoom>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>volodymyr20</con:username><con:password>volo20dymyr</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:addRoom"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ca21db02-6528-46c8-8296-837479eee9de" isOneWay="false" action="urn:deleteRoom" name="deleteRoom" bindingOperationName="deleteRoom" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a3b2fa2e-6bd2-45ca-8252-bc3a1a2951a9" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://sample.com/reservation/room/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:deleteRoom>\r
+         <!--Optional:-->\r
+         <typ:roomNumber>?</typ:roomNumber>\r
+      </typ:deleteRoom>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deleteRoom"/></con:call></con:operation><con:operation id="82658f7e-b091-4b5a-bdb6-a4dd16dac258" isOneWay="false" action="urn:getRoomDetails" name="getRoomDetails" bindingOperationName="getRoomDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cff39e85-63e4-4c23-87d0-80d785cfd6db" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/RoomManagementService.RoomManagementServiceHttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://sample.com/reservation/room/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:getRoomDetails>\r
+         <!--Optional:-->\r
+         <typ:roomNumber>?</typ:roomNumber>\r
+      </typ:getRoomDetails>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getRoomDetails"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer><con:outgoing><con:name>volodymyr20</con:name><con:username>volodymyr20</con:username><con:password>volo20dymyr</con:password></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
